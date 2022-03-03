@@ -1,4 +1,6 @@
-# Shiny app to run this python style transfer tool
+# Shiny app to run a style transfer model via Python Tensorflow
+# Author: Nick O'Brien
+# Last edited: 3/3/2022
 
 library(shiny)
 library(shinyjs)

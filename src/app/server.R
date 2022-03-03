@@ -1,4 +1,6 @@
-# Shiny app to run this python style transfer tool
+# Shiny app to run a style transfer model via Python Tensorflow
+# Author: Nick O'Brien
+# Last edited: 3/3/2022
 
 library(shiny)
 library(shinyjs)
@@ -158,9 +160,6 @@ server <- function(input, output, session) {
       return()
     })
 
-    # Insert the figure
-    # If we've run it before, remove the old one
-    removeUI(selector = "#stylisedImage", immediate = T)
     # Remove the last image 
     if (!is.null(session$userData$lastGeneratedImage)) {
       file.remove(session$userData$lastGeneratedImage)
@@ -171,7 +170,8 @@ server <- function(input, output, session) {
 
     # Release the lock
     buttonLocker(session$userData$buttons)  
-  }) 
+  })
+  
   # Handle rendering the image
   output$imageInsert <- renderUI({
     input$renderButton
@@ -192,6 +192,5 @@ server <- function(input, output, session) {
       plot(as.raster(mainImg))
       plot(as.raster(styleImg))
     }
-    
   })
 }
