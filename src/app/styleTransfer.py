@@ -2,8 +2,9 @@ import tensorflow as tf
 import tensorflow_hub as hub
 import numpy as np
 import PIL.Image
-from os import path
+from os import path, remove
 from random import randint
+from imghdr import what
 
 def loadImg(pathToImg):
     maxDim = 512
@@ -29,7 +30,10 @@ def exportImage(tf_img):
         tf_img = tf_img[0]
     return PIL.Image.fromarray(tf_img)
 
-def runModel(img, style):    
+def loadModel(path):
+    return hub.load(path)
+
+def runModel(img, style, model):    
     suffix = str(randint(0, 1e32))
     img = path.abspath(img)
     style = path.abspath(style)
@@ -38,10 +42,19 @@ def runModel(img, style):
     styleImage = loadImg(style)
 
     # Load and run the model
-    styliseModel = hub.load('../../model')
+    styliseModel = model
     stylisedModel = styliseModel(tf.constant(contentImage), tf.constant(styleImage))[0]
 
     # Save the image
     imgName = path.splitext(img)
     exportImage(stylisedModel).save(imgName[0] + "_stylised" + suffix + imgName[1])
     return (path.basename(imgName[0]) + "_stylised" + suffix + imgName[1])
+
+def imgType(path):
+    return what(path) if what(path) else ""
+
+def convertWebp(imgpath):
+    newPath = path.splitext(imgpath)[0]
+    img = PIL.Image.open(imgpath).convert("RGB")
+    img.save(newPath + ".png", "png")
+    remove(imgpath)

@@ -32,10 +32,11 @@ ui <- fluidPage(
     ),
     hr(),
     fluidRow(
-      # Fix the height and width of the image to the row dimensions
-      tags$style(HTML("div#imageInsert img {max-width: 100%; max-height: 100%;}")),
       column(width = 12,
-             htmlOutput("imageInsert")
+             h3(textOutput(outputId = "outputHeader")),
+             plotOutput("inputInsert"),
+             htmlOutput("imageInsert"),
+             hr()
         )
     )
 )
