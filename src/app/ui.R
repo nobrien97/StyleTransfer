@@ -6,6 +6,10 @@ library(shinyjs)
 ui <- fluidPage(
     useShinyjs(),
     titlePanel("Tensorflow Style Transfer Tool"),
+    headerPanel("",
+                tags$head(
+                  tags$img(src="banner.jpg", height="200px")
+                )),
     h3("Combines a main image with the style of another."),
     hr(),
     fluidRow(

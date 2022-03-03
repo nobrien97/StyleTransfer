@@ -180,10 +180,7 @@ server <- function(input, output, session) {
       framePrint <- tags$img(src=paste0("imgpath/", session$userData$outputFilename),
                              style = "max-height: 100%; max-width: 100%; margin-left: auto; margin-right: auto; display: block;")
       
-    } #else {
-      #framePrint <- tags$img(src="www/banner.jpg"),
-       #                      style = "max-height: 100%; max-width: 100%; margin-left: auto; margin-right: auto; display: block;")
-    #}
+    }
   })
   
   output$inputInsert <- renderPlot({
@@ -197,6 +194,4 @@ server <- function(input, output, session) {
     }
     
   })
-  
-
 }
