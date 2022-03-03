@@ -1,6 +1,6 @@
 # Shiny Style Transfer
 
-![banner]("src/app/www/banner.jpg")
+![banner](src/app/www/banner.jpg)
 
 A Shiny app that loads a Tensorflow Style-Transfer model and tries to generate a stylised output from a given 'main' image and 'style' image. Allows for local upload or downloads images from a given URL. It even checks if it can load an image from the URL and spits out an error if it can't!
 
